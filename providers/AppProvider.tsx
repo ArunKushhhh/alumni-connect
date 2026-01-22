@@ -6,8 +6,29 @@ import { ReactNode } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NextTopLoader from "nextjs-toploader";
 
+function makeQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+      },
+    },
+  });
+}
+
+let browserQueryClient: QueryClient | undefined = undefined;
+
+function getQueryClient() {
+  if (typeof window === "undefined") {
+    return makeQueryClient();
+  } else {
+    if (!browserQueryClient) browserQueryClient = makeQueryClient();
+    return browserQueryClient;
+  }
+}
+
 export function AppProvider({ children }: { children: ReactNode }) {
-  const queryClient = new QueryClient();
+  const queryClient = getQueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>

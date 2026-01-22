@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function Logo({ isLogoOnly }: { isLogoOnly?: boolean }) {
   return (
-    <div className="flex items-center gap-2">
+    <Link href="/" className="flex items-center gap-2">
       <Image
         src="/logo.svg"
         alt="Logo"
@@ -11,6 +12,6 @@ export function Logo({ isLogoOnly }: { isLogoOnly?: boolean }) {
         className="dark:invert"
       />
       {!isLogoOnly && <h1 className="text-xl font-bold">Alumni Connect</h1>}
-    </div>
+    </Link>
   );
 }

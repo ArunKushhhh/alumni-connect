@@ -7,10 +7,12 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col min-h-screen justify-between">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      {children}
-      <Footer />
+      <div className="flex flex-col min-h-[200vh] pt-16">
+        {children}
+        <Footer />
+      </div>
     </div>
   );
 }
