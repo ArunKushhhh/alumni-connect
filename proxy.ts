@@ -30,6 +30,10 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/feed", request.url));
   }
 
+  if (session && pathname === "/profile/edit") {
+    return NextResponse.next();
+  }
+
   return NextResponse.next();
 }
 

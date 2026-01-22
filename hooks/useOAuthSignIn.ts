@@ -13,7 +13,7 @@ export function useOAuthSignIn() {
     startTransition(async () => {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/feed",
+        callbackURL: "/profile/edit",
         fetchOptions: {
           onLoading: () => {
             toast.loading("Signing in with Google...");
@@ -34,7 +34,7 @@ export function useOAuthSignIn() {
     startTransition(async () => {
       await authClient.signIn.social({
         provider: "linkedin",
-        callbackURL: "/feed",
+        callbackURL: "/profile/edit",
         fetchOptions: {
           onLoading: () => {
             toast.loading("Signing in with LinkedIn...");
