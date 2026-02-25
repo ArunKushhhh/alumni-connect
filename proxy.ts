@@ -7,11 +7,14 @@ export async function proxy(request: NextRequest) {
             headers: request.headers,
         }
     })
-    const supabase = await createSupabaseServerClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    console.log(user)
-    if (!user && request.nextUrl.pathname.startsWith("/protected")) {
-        return NextResponse.redirect(new URL("/login", request.url)) //redirect /protected routes to /login login
+
+    if (request.nextUrl.pathname.startsWith("/protected")) {
+        const supabase = await createSupabaseServerClient()
+        const { data: { user } } = await supabase.auth.getUser()
+
+        if (!user) {
+            return NextResponse.redirect(new URL("/login", request.url)) //redirect /protected routes to /login login
+        }
     }
 
     return response
