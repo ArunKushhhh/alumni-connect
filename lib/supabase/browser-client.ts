@@ -6,7 +6,7 @@ type SupabaseSchema = Record<string, never>;
 
 let client: SupabaseClient<SupabaseSchema> | null = null;
 
-export function getSupabaseBrwoserClient(): SupabaseClient<SupabaseSchema> {
+export function getSupabaseBrowserClient(): SupabaseClient<SupabaseSchema> {
     if (client) {
         return client;
     }
